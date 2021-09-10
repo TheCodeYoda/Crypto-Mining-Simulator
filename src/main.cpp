@@ -1,16 +1,15 @@
 #include <iostream>
 using namespace std;
 
-#include "block.hpp"
+#include "blockchain.hpp"
 
 int main()
 {
-  /* testing block creation */
-  Block block1 = Block("aditya", "0000");
-  Block block2 = Block("aami", "32123");
-  Block block3 = Block("beast", "343242");
+  Blockchain chain;
 
-  block1.display();
-  block2.display();
-  block3.display();
+  /* adding blocks to blockchain */
+  for (int i = 1; i < 11; i++) {
+    chain.add_block(to_string(i));
+  }
+  chain.display();
 }
