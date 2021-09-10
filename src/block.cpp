@@ -43,3 +43,8 @@ void Block::display()
   cout << "current block hash: " << this->hash << endl;
   cout << endl;
 }
+
+string Block::give_hash()
+{
+  return this->hash;
+}

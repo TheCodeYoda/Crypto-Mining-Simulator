@@ -14,5 +14,6 @@ class Block {
  public:
   Block(std::string data, std::string previous_block_hash);
   void display();
+  std::string give_hash();
 };
 #endif
