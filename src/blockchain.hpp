@@ -9,11 +9,12 @@ using namespace std;
 class Blockchain {
  private:
   vector<Block> blocks;
+  int difficulty;
   void set_genesis_block();
   string give_last_hash();
 
  public:
-  Blockchain();
+  Blockchain(int difficulty);
   void add_block(string data);
   void display();
 };

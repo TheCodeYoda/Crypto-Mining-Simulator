@@ -5,20 +5,23 @@ using namespace std;
 #include "block.hpp"
 #include "sha256.hpp"
 
-Block::Block(string data, string previous_block_hash)
+Block::Block(string data, string previous_block_hash, int difficulty)
 {
   this->data = data;
   this->prev_block_hash = previous_block_hash;
   this->hash = this->compute_valid_hash(data, previous_block_hash);
+  this->difficulty = difficulty;
 }
 
 /* checks whether hash starts with 3 zeroes */
 bool Block::is_hash_valid(string hash)
 {
-  if (hash[0] == '0' && hash[1] == '0' && hash[2] == '0') {
-    return true;
+  for (int match = 0; match < difficulty; ++match) {
+    if (hash[match] != '0') {
+      return false;
+    }
   }
-  return false;
+  return true;
 }
 
 /* calculates valid hash for the block (similar to mining)*/
