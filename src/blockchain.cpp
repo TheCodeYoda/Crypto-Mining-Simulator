@@ -6,8 +6,8 @@ using namespace std;
 /* constructs blockchain with genesis block */
 Blockchain::Blockchain(int difficulty)
 {
-  this->set_genesis_block();
   this->difficulty = difficulty;
+  this->set_genesis_block();
 }
 
 /* sets the very first block with prev hash being null hash */
@@ -17,7 +17,7 @@ void Blockchain::set_genesis_block()
   for (int i = 0; i < 64; i++) {
     null_hash += '0';
   }
-  Block genesis_block = Block("genesis", null_hash, difficulty);
+  Block genesis_block = Block("genesis", null_hash, this->difficulty);
   this->blocks.push_back(genesis_block);
 }
 
@@ -32,7 +32,7 @@ string Blockchain::give_last_hash()
 void Blockchain::add_block(string data)
 {
   /* mines for a new block */
-  Block new_block = Block(data, this->give_last_hash(), difficulty);
+  Block new_block = Block(data, this->give_last_hash(), this->difficulty);
   this->blocks.push_back(new_block);
 }
 

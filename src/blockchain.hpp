@@ -1,6 +1,5 @@
 #ifndef BLOCKCHAIN_H
 #define BLOCKCHAIN_H
-
 #include <vector>
 using namespace std;
 
