@@ -1,4 +1,6 @@
+#include <cstdio>
 #include <iostream>
+#include <ostream>
 using namespace std;
 
 #include "blockchain.hpp"
@@ -22,8 +24,10 @@ int main(int argc, char **argv)
   Blockchain chain(difficulty);
 
   /* adding blocks to blockchain */
-  for (int i = 1; i < no_of_blocks_to_mine; i++) {
+  for (int i = 1; i <= no_of_blocks_to_mine; i++) {
+    cout << "\rmining block: " << i << "/" << no_of_blocks_to_mine << flush;
     chain.add_block(to_string(i));
   }
+  cout << "\n\n";
   chain.display();
 }
