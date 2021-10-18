@@ -19,7 +19,7 @@ int main(int argc, char **argv)
   int difficulty = atoi(argv[1]);
   int no_of_blocks_to_mine = atoi(argv[2]);
   welcome_message(difficulty, no_of_blocks_to_mine);
-  Blockchain chain(3);
+  Blockchain chain(difficulty);
 
   /* adding blocks to blockchain */
   for (int i = 1; i < no_of_blocks_to_mine; i++) {
