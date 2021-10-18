@@ -6,7 +6,7 @@ using namespace std;
 void welcome_message(int difficulty, int blocks)
 {
   cout << "Welcome to the crypto mining simulator using SHA-256....\n";
-  cout << "Lets Mine " << blocks << " blocks with difficulty level " << difficulty
+  cout << "Lets Mine " << blocks << " block[s] with difficulty level " << difficulty
        << ".... ..... .... .... ....\n\n";
 }
 
