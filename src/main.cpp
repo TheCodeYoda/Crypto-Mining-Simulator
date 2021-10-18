@@ -25,9 +25,15 @@ int main(int argc, char **argv)
 
   /* adding blocks to blockchain */
   for (int i = 1; i <= no_of_blocks_to_mine; i++) {
-    cout << "\rmining block: " << i << "/" << no_of_blocks_to_mine << flush;
+    cout << "mining block: " << i << "/" << no_of_blocks_to_mine << endl;
     chain.add_block(to_string(i));
   }
   cout << "\n\n";
-  chain.display();
+
+  cout << "Do you want to display the blockchain ?? [y/n]" << endl;
+  char choice;
+  cin >> choice;
+  if (choice == 'y') {
+    chain.display();
+  }
 }
