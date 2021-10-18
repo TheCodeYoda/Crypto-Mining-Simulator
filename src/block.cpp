@@ -10,7 +10,7 @@ Block::Block(string data, string previous_block_hash, int difficulty)
   this->data = data;
   this->difficulty = difficulty;
   this->prev_block_hash = previous_block_hash;
-  this->hash = this->compute_valid_hash(data, previous_block_hash);
+  this->hash = this->compute_valid_hash();
 }
 
 /* checks whether hash starts with 3 zeroes */
@@ -29,13 +29,13 @@ bool Block::is_hash_valid(string hash)
 }
 
 /* calculates valid hash for the block (similar to mining)*/
-string Block::compute_valid_hash(string data, string previous_block_hash)
+string Block::compute_valid_hash()
 {
   string hash = "";
   int nonce = 0;
 
   while (!is_hash_valid(hash)) {
-    string input_string = data + "\t" + previous_block_hash + to_string(nonce);
+    string input_string = this->data + "\t" + this->prev_block_hash + to_string(nonce);
     hash = sha256(input_string);
     ++nonce;
   }

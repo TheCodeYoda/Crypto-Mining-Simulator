@@ -9,7 +9,7 @@ class Block {
   std::string prev_block_hash;
   std::string hash;
   int difficulty;
-  std::string compute_valid_hash(std::string, std::string);
+  std::string compute_valid_hash();
   bool is_hash_valid(std::string hash);
 
  public:
