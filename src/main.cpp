@@ -5,10 +5,11 @@ using namespace std;
 
 int main()
 {
-  Blockchain chain;
+  Blockchain chain(3);
 
   /* adding blocks to blockchain */
   for (int i = 1; i < 11; i++) {
+    cout << "mining block " << i << "....." << endl;
     chain.add_block(to_string(i));
   }
   chain.display();
