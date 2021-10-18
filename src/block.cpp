@@ -33,12 +33,16 @@ string Block::compute_valid_hash()
 {
   string hash = "";
   int nonce = 0;
+  unsigned long long trie = 1;
 
   while (!is_hash_valid(hash)) {
+    cout << "\rtries: " << trie << flush;
     string input_string = this->data + "\t" + this->prev_block_hash + to_string(nonce);
     hash = sha256(input_string);
     ++nonce;
+    ++trie;
   }
+  cout << "\n\n";
 
   return hash;
 }
