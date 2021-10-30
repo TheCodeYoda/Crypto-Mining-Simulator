@@ -17,6 +17,7 @@ Block::Block(string data, string previous_block_hash, int difficulty)
   /* setting timestamp */
   time_t res = std::time(nullptr);
   this->time = ctime(&res);
+  /* cout << this->time << "........... ............... ...........\n"; */
   usleep(1000000);
 }
 
