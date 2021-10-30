@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <unistd.h>
 using namespace std;
 
 #include "block.hpp"
@@ -11,6 +13,11 @@ Block::Block(string data, string previous_block_hash, int difficulty)
   this->difficulty = difficulty;
   this->prev_block_hash = previous_block_hash;
   this->hash = this->compute_valid_hash();
+
+  /* setting timestamp */
+  time_t res = std::time(nullptr);
+  this->time = ctime(&res);
+  usleep(1000000);
 }
 
 /* checks whether hash starts with 3 zeroes */
@@ -52,6 +59,7 @@ void Block::display()
   cout << "data: " << this->data << endl;
   cout << "previous block hash: " << this->prev_block_hash << endl;
   cout << "current block hash: " << this->hash << endl;
+  cout << "timestamp: " << this->time << endl;
   cout << endl;
 }
 

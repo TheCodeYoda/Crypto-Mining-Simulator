@@ -8,6 +8,7 @@ class Block {
   std::string data;
   std::string prev_block_hash;
   std::string hash;
+  char *time;
   int difficulty;
   std::string compute_valid_hash();
   bool is_hash_valid(std::string hash);
