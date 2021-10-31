@@ -17,5 +17,6 @@ class Block {
   Block(std::string data, std::string previous_block_hash, int difficulty);
   void display();
   std::string give_hash();
+  std::string give_prev_hash();
 };
 #endif

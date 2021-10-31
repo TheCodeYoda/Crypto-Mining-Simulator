@@ -65,3 +65,8 @@ string Block::give_hash()
 {
   return this->hash;
 }
+
+string Block::give_prev_hash()
+{
+  return this->prev_block_hash;
+}
