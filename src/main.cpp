@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <iostream>
 #include <ostream>
+#include <string>
 using namespace std;
 
 #include "blockchain.hpp"
