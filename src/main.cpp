@@ -37,4 +37,8 @@ int main(int argc, char **argv)
   if (choice == 'y') {
     chain.display();
   }
+
+  if (!chain.validate_blockchain()) {
+    cerr << "!!!!!!!!!!!!! Blockchain tampered !!!!!!!!!!!!!!!!" << endl;
+  }
 }
