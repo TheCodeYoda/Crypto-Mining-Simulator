@@ -24,16 +24,12 @@ Block::Block(string data, string previous_block_hash, int difficulty)
 /* checks whether hash starts with 3 zeroes */
 bool Block::is_hash_valid(string hash)
 {
-  /* cout << "tried hash: " << hash << endl; */
   for (int match = 0; match < this->difficulty; ++match) {
     if (hash[match] != '0') {
       return false;
     }
   }
   return true;
-  /* if (hash[0] == '0' && hash[1] == '0' && hash[2] == '0') */
-  /*   return true; */
-  /* return false; */
 }
 
 /* calculates valid hash for the block (similar to mining)*/
@@ -45,7 +41,8 @@ string Block::compute_valid_hash()
 
   while (!is_hash_valid(hash)) {
     cout << "\rtries: " << trie << flush;
-    string input_string = this->data + "\t" + this->prev_block_hash + to_string(nonce);
+    string input_string = this->data + "\t" + this->time + "\t" + this->prev_block_hash +
+                          to_string(nonce);
     hash = sha256(input_string);
     ++nonce;
     ++trie;
