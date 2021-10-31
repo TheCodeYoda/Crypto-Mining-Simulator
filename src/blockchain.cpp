@@ -36,6 +36,19 @@ void Blockchain::add_block(string data)
   this->blocks.push_back(new_block);
 }
 
+/* validates blockchain */
+bool Blockchain::validate_blockchain()
+{
+  Block prev = blocks[0];
+  for (int i = 1; i < blocks.size(); i++) {
+    Block curr = blocks[i];
+    if (curr.give_prev_hash() != prev.give_hash())
+      return false;
+    prev = curr;
+  }
+  return true;
+}
+
 void Blockchain::display()
 {
   for (Block block : this->blocks) {
