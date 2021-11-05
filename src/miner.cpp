@@ -1,22 +1,28 @@
 #include "miner.hpp"
 #include "blockchain.hpp"
 
-Miner::Miner(string name, int id, int difficulty)
+Miner::Miner(string name, int id, shared_ptr<Blockchain> chain)
 {
   this->name = name;
   this->id = id;
-  this->chain = Blockchain(difficulty);
+  this->pointer_to_chain = chain;
 }
 
 void Miner::mine(string data)
 {
-  this->chain.add_block(data);
-  if (!chain.validate_blockchain()) {
-    cerr << "!!!!!!!!!!!!! Blockchain tampered !!!!!!!!!!!!!!!!" << endl;
+  this->pointer_to_chain->add_block(data);
+  if (!pointer_to_chain->validate_blockchain()) {
+    cerr << "!!!!!!!!!!!!! Blockpointer_to_chain tampered !!!!!!!!!!!!!!!!" << endl;
   }
 }
 
 void Miner::display_chain()
 {
-  this->chain.display();
+  this->pointer_to_chain->display();
+}
+
+void Miner::display_details()
+{
+  cout << "Miner name : " << this->name << endl;
+  cout << "Miner id: " << this->id << endl;
 }

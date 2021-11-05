@@ -6,16 +6,19 @@ using namespace std;
 #include "block.hpp"
 #include "blockchain.hpp"
 
+#include <memory>
+
 class Miner {
  private:
   string name;
   int id;
-  Blockchain chain;
+  shared_ptr<Blockchain> pointer_to_chain;
 
  public:
-  Miner(string name, int id, int difficulty);
+  Miner(string name, int id, shared_ptr<Blockchain> chain);
   void mine(string data);
   void display_chain();
+  void display_details();
 };
 
 #endif
