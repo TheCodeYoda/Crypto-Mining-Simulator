@@ -17,7 +17,6 @@ class Miner {
  public:
   Miner(string name, int id, shared_ptr<Blockchain> chain);
   void mine(string data);
-  void display_chain();
   void display_details();
 };
 

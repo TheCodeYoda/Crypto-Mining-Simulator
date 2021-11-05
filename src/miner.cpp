@@ -16,11 +16,6 @@ void Miner::mine(string data)
   }
 }
 
-void Miner::display_chain()
-{
-  this->pointer_to_chain->display();
-}
-
 void Miner::display_details()
 {
   cout << "Miner name : " << this->name << endl;
