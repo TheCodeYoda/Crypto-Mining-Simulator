@@ -13,10 +13,10 @@ class Blockchain {
   string give_last_hash();
 
  public:
+  Blockchain();
   Blockchain(int difficulty);
   void add_block(string data);
   bool validate_blockchain();
   void display();
 };
-
 #endif

@@ -3,6 +3,14 @@ using namespace std;
 
 #include "blockchain.hpp"
 
+/* Default constructor */
+
+Blockchain::Blockchain()
+{
+  this->difficulty = 3;
+  this->set_genesis_block();
+}
+
 /* constructs blockchain with genesis block */
 Blockchain::Blockchain(int difficulty)
 {
