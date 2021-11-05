@@ -1,3 +1,4 @@
+#include "blockchain.hpp"
 #include <cstdio>
 #include <iostream>
 #include <ostream>
@@ -23,8 +24,13 @@ int main(int argc, char **argv)
   int no_of_blocks_to_mine = atoi(argv[2]);
   welcome_message(difficulty, no_of_blocks_to_mine);
 
+  /* create a Blockchain */
+
+  shared_ptr<Blockchain> chain(new Blockchain(difficulty));
+
   /* create a miner */
-  Miner m("Aditya", 1, difficulty);
+  Miner m("Aditya", 1, chain);
+  m.display_details();
 
   for (int data = 100; data < 100 + no_of_blocks_to_mine; ++data) {
     m.mine(to_string(data));
