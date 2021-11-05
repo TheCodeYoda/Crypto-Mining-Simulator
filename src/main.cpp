@@ -28,19 +28,27 @@ int main(int argc, char **argv)
 
   shared_ptr<Blockchain> chain(new Blockchain(difficulty));
 
-  /* create a miner */
-  Miner m("Aditya", 1, chain);
-  m.display_details();
+  /* create miners */
+  Miner m1("Aditya", 1, chain);
 
+  Miner m2("Mike", 2, chain);
+
+  /*Block addition by multiple miners*/
   for (int data = 100; data < 100 + no_of_blocks_to_mine; ++data) {
-    m.mine(to_string(data));
+    m1.display_details();
+    cout << "the above miner is mining... .... .... ...\n";
+    m1.mine(to_string(data));
+    m2.display_details();
+    cout << "the above miner is mining... .... .... ...\n";
+    m2.mine(to_string(data + 1));
   }
   cout << "\n\n";
 
+  /* Displaying the blockchain */
   cout << "Do you want to display the blockchain ?? [y/n]" << endl;
   char choice;
   cin >> choice;
   if (choice == 'y') {
-    m.display_chain();
+    chain->display();
   }
 }
