@@ -25,7 +25,7 @@ void Blockchain::set_genesis_block()
   for (int i = 0; i < 64; i++) {
     null_hash += '0';
   }
-  Block genesis_block = Block("genesis", null_hash, this->difficulty);
+  Block genesis_block = Block("genesis", null_hash, this->difficulty, -1);
   this->blocks.push_back(genesis_block);
 }
 
@@ -37,10 +37,10 @@ string Blockchain::give_last_hash()
 }
 
 /* adds block to the blockchain */
-void Blockchain::add_block(string data)
+void Blockchain::add_block(string data, int miner_id)
 {
   /* mines for a new block */
-  Block new_block = Block(data, this->give_last_hash(), this->difficulty);
+  Block new_block = Block(data, this->give_last_hash(), this->difficulty, miner_id);
   this->blocks.push_back(new_block);
 }
 

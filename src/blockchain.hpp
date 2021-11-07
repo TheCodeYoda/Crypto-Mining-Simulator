@@ -15,7 +15,7 @@ class Blockchain {
  public:
   Blockchain();
   Blockchain(int difficulty);
-  void add_block(string data);
+  void add_block(string data, int miner_id);
   bool validate_blockchain();
   void display();
 };
