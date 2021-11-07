@@ -7,7 +7,7 @@ using namespace std;
 #include "block.hpp"
 #include "sha256.hpp"
 
-Block::Block(string data, string previous_block_hash, int difficulty)
+Block::Block(string data, string previous_block_hash, int difficulty, int miner_id)
 {
   this->data = data;
   this->difficulty = difficulty;
@@ -17,8 +17,10 @@ Block::Block(string data, string previous_block_hash, int difficulty)
   /* setting timestamp */
   time_t res = std::time(nullptr);
   this->time = ctime(&res);
-  /* cout << this->time << "........... ............... ...........\n"; */
-  usleep(1000000);
+  usleep(1000000); /*  to avoid duplicate time stamps*/
+
+  /* set creator_id */
+  this->miner_id = miner_id;
 }
 
 /* checks whether hash starts with 3 zeroes */
@@ -58,6 +60,7 @@ void Block::display()
   cout << "previous block hash: " << this->prev_block_hash << endl;
   cout << "current block hash: " << this->hash << endl;
   cout << "timestamp: " << this->time << endl;
+  cout << "Created by miner: " << this->miner_id << endl;
   cout << endl;
 }
 
