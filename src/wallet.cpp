@@ -16,3 +16,9 @@ void Wallet::withdraw(double bucks)
 {
   this->balance -= bucks;
 }
+
+void Wallet::display()
+{
+  cout << "Wallet info: \n"
+       << "Balance: " << this->balance << "\n";
+}

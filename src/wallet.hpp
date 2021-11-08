@@ -14,5 +14,6 @@ class Wallet {
   Wallet();
   void deposit(double bucks);
   void withdraw(double bucks);
+  void display();
 };
 #endif
