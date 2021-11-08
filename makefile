@@ -28,7 +28,7 @@ endif
 
 INCLUDES = 
 LIB_FLAGS =
-OBJS = block.o blockchain.o sha256.o miner.o
+OBJS = block.o blockchain.o sha256.o miner.o wallet.o
 PROJECT_NAME = mining_simulator
 
 ifeq (${mode}, debug)
@@ -57,6 +57,10 @@ block.o:
 
 miner.o:
 	${CC} ${INCLUDES} -c src/miner.cpp -o $@
+
+wallet.o:
+	${CC} ${INCLUDES} -c src/wallet.cpp -o $@
+
 
 .PHONEY: clean clean_emacs_files clean_all
 clean:
