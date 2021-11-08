@@ -59,7 +59,7 @@ void Block::display()
   cout << "data: " << this->data << endl;
   cout << "previous block hash: " << this->prev_block_hash << endl;
   cout << "current block hash: " << this->hash << endl;
-  cout << "timestamp: " << this->time << endl;
+  cout << "timestamp: " << this->time;
   cout << "Created by miner: " << this->miner_id << endl;
   cout << endl;
 }
