@@ -5,6 +5,7 @@ using namespace std;
 
 #include "block.hpp"
 #include "blockchain.hpp"
+#include "wallet.hpp"
 
 #include <memory>
 
@@ -13,6 +14,7 @@ class Miner {
   string name;
   int id;
   shared_ptr<Blockchain> pointer_to_chain;
+  Wallet wallet;
 
  public:
   Miner(string name, int id, shared_ptr<Blockchain> chain);

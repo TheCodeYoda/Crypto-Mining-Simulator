@@ -20,4 +20,5 @@ void Miner::display_details()
 {
   cout << "Miner name : " << this->name << endl;
   cout << "Miner id: " << this->id << endl;
+  this->wallet.display();
 }
