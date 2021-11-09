@@ -35,8 +35,8 @@ int main(int argc, char **argv)
 
   /*Block addition by multiple miners*/
   for (int data = 100; data < 100 + no_of_blocks_to_mine * 5; ++data) {
-    m1.display_details();
-    cout << "the above miner is mining... .... .... ...\n";
+    /* m1.display_details(); */
+    /* cout << "the above miner is mining... .... .... ...\n"; */
     m1.mine(to_string(data));
   }
   cout << "\n\n";
