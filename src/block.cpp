@@ -7,13 +7,17 @@ using namespace std;
 #include "block.hpp"
 #include "sha256.hpp"
 
-Block::Block(string data, string previous_block_hash, int difficulty, int miner_id)
+Block::Block(vector<string> transactions, string previous_block_hash, int difficulty, int miner_id)
 {
-  this->data = data;
   this->difficulty = difficulty;
   this->prev_block_hash = previous_block_hash;
-  this->hash = this->compute_valid_hash();
-
+  /* setting index for the freshblock and filling the transaction array */
+  int index = 0;
+  while (index != 5) {
+    this->transactions[index] = transactions[index];
+    ++(index);
+  }
+  this->hash = compute_valid_hash();
   /* setting timestamp */
   time_t res = std::time(nullptr);
   this->time = ctime(&res);
@@ -43,8 +47,8 @@ string Block::compute_valid_hash()
 
   while (!is_hash_valid(hash)) {
     cout << "\rtries: " << trie << flush;
-    string input_string = this->data + "\t" + this->time + "\t" + this->prev_block_hash +
-                          to_string(nonce);
+    string input_string = this->transactions[0] + "\t" + this->time + "\t" +
+                          this->prev_block_hash + to_string(nonce);
     hash = sha256(input_string);
     ++nonce;
     ++trie;
@@ -56,7 +60,10 @@ string Block::compute_valid_hash()
 
 void Block::display()
 {
-  cout << "data: " << this->data << endl;
+  cout << "data: "
+       << "{" << this->transactions[0] << "," << this->transactions[1] << ","
+       << this->transactions[2] << "," << this->transactions[3] << "," << this->transactions[4]
+       << "}" << endl;
   cout << "previous block hash: " << this->prev_block_hash << endl;
   cout << "current block hash: " << this->hash << endl;
   cout << "timestamp: " << this->time;
