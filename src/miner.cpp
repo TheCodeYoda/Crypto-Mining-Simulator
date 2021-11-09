@@ -10,7 +10,7 @@ Miner::Miner(string name, int id, shared_ptr<Blockchain> chain)
 
 void Miner::mine(string data)
 {
-  this->pointer_to_chain->add_block(data, this->id);
+  this->pointer_to_chain->add_transaction(data, this->id);
   if (!pointer_to_chain->validate_blockchain()) {
     cerr << "!!!!!!!!!!!!! Blockpointer_to_chain tampered !!!!!!!!!!!!!!!!" << endl;
   }
