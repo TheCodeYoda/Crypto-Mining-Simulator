@@ -25,7 +25,7 @@ void Blockchain::add_transaction(string transaction, int miner_id)
   if (this->mpool.size() == 5) {
     vector<string> slice(mpool.transaction_pool.begin(), mpool.transaction_pool.end());
     if (this->blocks.size() == 0) {
-      this->set_genesis_block(slice);
+      this->set_genesis_block(slice, miner_id);
     }
     else {
       this->add_block(slice, miner_id);
@@ -35,13 +35,13 @@ void Blockchain::add_transaction(string transaction, int miner_id)
 }
 
 /* sets the very first block with prev hash being null hash */
-void Blockchain::set_genesis_block(vector<string> transaction_slice)
+void Blockchain::set_genesis_block(vector<string> transaction_slice, int miner_id)
 {
   string null_hash = "";
   for (int i = 0; i < 64; i++) {
     null_hash += '0';
   }
-  Block genesis_block = Block(transaction_slice, null_hash, this->difficulty, -1);
+  Block genesis_block = Block(transaction_slice, null_hash, this->difficulty, miner_id);
   this->blocks.push_back(genesis_block);
 }
 

@@ -11,13 +11,13 @@ class Blockchain {
   vector<Block> blocks;
   Mempool mpool;
   int difficulty;
-  void set_genesis_block(vector<string> transaction_slice);
+  void set_genesis_block(vector<string> transaction_slice, int miner_id);
+  void add_block(vector<string> transactions, int miner_id);
   string give_last_hash();
 
  public:
   Blockchain();
   Blockchain(int difficulty);
-  void add_block(vector<string> transactions, int miner_id);
   void add_transaction(string transaction, int miner_id);
   bool validate_blockchain();
   void display();
