@@ -5,14 +5,17 @@
 #include <array>
 #include <vector>
 
+#include "merkle_tree.hpp"
+
 class Block {
  private:
-  std::array<std::string, 5> transactions;
+  std::array<std::string, 4> transactions;
   std::string prev_block_hash;
   std::string hash;
   std::string time;
   int miner_id;
   int difficulty;
+  MerkleTree mtree;
   std::string compute_valid_hash();
   bool is_hash_valid(std::string hash);
 
