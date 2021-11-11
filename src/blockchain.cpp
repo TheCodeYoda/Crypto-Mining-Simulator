@@ -21,8 +21,8 @@ Blockchain::Blockchain(int difficulty)
 void Blockchain::add_transaction(string transaction, int miner_id)
 {
   this->mpool.add_transaction_to_pool(transaction);
-  /* create block if mpool has 5 transactions */
-  if (this->mpool.size() == 5) {
+  /* create block if mpool has 4 transactions */
+  if (this->mpool.size() == 4) {
     vector<string> slice(mpool.transaction_pool.begin(), mpool.transaction_pool.end());
     if (this->blocks.size() == 0) {
       this->set_genesis_block(slice, miner_id);
