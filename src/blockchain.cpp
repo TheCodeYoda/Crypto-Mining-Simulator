@@ -8,12 +8,21 @@ using namespace std;
 Blockchain::Blockchain()
 {
   this->difficulty = 3;
+  this->transaction_capacity = 4;
 }
 
 /* constructs blockchain with given difficulty*/
 Blockchain::Blockchain(int difficulty)
 {
   this->difficulty = difficulty;
+  this->transaction_capacity = 4;
+}
+
+/* constructs blockchain with given difficulty and given transaction capacity*/
+Blockchain::Blockchain(int difficulty, int transaction_capacity)
+{
+  this->difficulty = difficulty;
+  this->transaction_capacity = transaction_capacity;
 }
 
 /* add transaction to the blockchain */
@@ -22,7 +31,7 @@ void Blockchain::add_transaction(string transaction, int miner_id)
 {
   this->mpool.add_transaction_to_pool(transaction);
   /* create block if mpool has 4 transactions */
-  if (this->mpool.size() == 4) {
+  if (this->mpool.size() == this->transaction_capacity) {
     vector<string> slice(mpool.transaction_pool.begin(), mpool.transaction_pool.end());
     if (this->blocks.size() == 0) {
       this->set_genesis_block(slice, miner_id);
@@ -41,7 +50,8 @@ void Blockchain::set_genesis_block(vector<string> transaction_slice, int miner_i
   for (int i = 0; i < 64; i++) {
     null_hash += '0';
   }
-  Block genesis_block = Block(transaction_slice, null_hash, this->difficulty, miner_id);
+  Block genesis_block = Block(
+      transaction_slice, null_hash, this->difficulty, this->transaction_capacity, miner_id);
   this->blocks.push_back(genesis_block);
 }
 
@@ -56,7 +66,11 @@ string Blockchain::give_last_hash()
 void Blockchain::add_block(vector<string> transactions, int miner_id)
 {
   /* mines for a new block */
-  Block new_block = Block(transactions, this->give_last_hash(), this->difficulty, miner_id);
+  Block new_block = Block(transactions,
+                          this->give_last_hash(),
+                          this->difficulty,
+                          this->transaction_capacity,
+                          miner_id);
   this->blocks.push_back(new_block);
 }
 
@@ -74,6 +88,12 @@ bool Blockchain::validate_blockchain()
     prev = curr;
   }
   return true;
+}
+
+/* transaction capacity getter */
+int Blockchain::get_transaction_capacity()
+{
+  return this->transaction_capacity;
 }
 
 void Blockchain::display()
