@@ -9,12 +9,13 @@
 
 class Block {
  private:
-  std::array<std::string, 4> transactions;
+  std::vector<std::string> transactions;
   std::string prev_block_hash;
   std::string hash;
   std::string time;
   int miner_id;
   int difficulty;
+  int transaction_capacity;
   MerkleTree mtree;
   std::string compute_valid_hash();
   bool is_hash_valid(std::string hash);
@@ -23,6 +24,7 @@ class Block {
   Block(std::vector<std::string> transactions,
         std::string previous_block_hash,
         int difficulty,
+        int transaction_capacity,
         int miner_id);
   void display();
   std::string give_hash();

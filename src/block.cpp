@@ -7,15 +7,20 @@ using namespace std;
 #include "block.hpp"
 #include "sha256.hpp"
 
-Block::Block(vector<string> transactions, string previous_block_hash, int difficulty, int miner_id)
+Block::Block(vector<string> transactions,
+             string previous_block_hash,
+             int difficulty,
+             int transaction_capacity,
+             int miner_id)
 {
 
   this->difficulty = difficulty;
   this->prev_block_hash = previous_block_hash;
+  this->transaction_capacity = transaction_capacity;
   /* setting index for the freshblock and filling the transaction array */
   int index = 0;
-  while (index != 4) {
-    this->transactions[index] = transactions[index];
+  while (index != transaction_capacity) {
+    this->transactions.push_back(transactions[index]);
     ++(index);
   }
   /* initializing merkle tree */
