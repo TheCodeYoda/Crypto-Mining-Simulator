@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 
   /* create a Blockchain */
 
-  shared_ptr<Blockchain> chain(new Blockchain(difficulty));
+  shared_ptr<Blockchain> chain(new Blockchain(difficulty, 3));
 
   /* create miners */
   Miner m1("Aditya", 1, chain);
@@ -34,7 +34,8 @@ int main(int argc, char **argv)
   Miner m2("Mike", 2, chain);
 
   /*Block addition by multiple miners*/
-  for (int data = 100; data < 100 + no_of_blocks_to_mine * 4; ++data) {
+  for (int data = 100; data < 100 + no_of_blocks_to_mine * chain->get_transaction_capacity();
+       ++data) {
     /* m1.display_details(); */
     /* cout << "the above miner is mining... .... .... ...\n"; */
     m1.mine(to_string(data));
