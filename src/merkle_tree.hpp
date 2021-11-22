@@ -34,12 +34,24 @@ class MerkleTree {
       this->leaf_nodes.push_back(MerkleTreeNode(transaction));
     }
   }
+
+  /* alters the vector to have even no of elements to support binary tree */
+  void make_even(vector<shared_ptr<MerkleTreeNode>> &q)
+  {
+    if (q.size() & 1) {
+      auto extra_node = q[q.size() - 1];
+      q.push_back(extra_node);
+    }
+  }
+
+  /* build the merkle tree in a bottom up fashion */
   void build()
   {
     vector<shared_ptr<MerkleTreeNode>> q;
     for (auto node : leaf_nodes) {
       q.push_back(shared_ptr<MerkleTreeNode>(new MerkleTreeNode(sha256(node.data))));
     }
+    this->make_even(q);
 
     while (q.size() > 1) {
       /* for (auto node : q) { */
@@ -48,6 +60,7 @@ class MerkleTree {
       /* cout << endl << endl; */
       /* auxillary ds used for swapping out with q */
       vector<shared_ptr<MerkleTreeNode>> temp;
+      this->make_even(q);
       for (int ix = 0; ix < q.size(); ix += 2) {
         /* creating parent for adjacent children */
         shared_ptr<MerkleTreeNode> new_node(
@@ -73,7 +86,7 @@ class MerkleTree {
     cout << "\n";
     cout << "merkle_root_hash: " << this->root->data << endl;
     cout << "actual expected hash: "
-         << sha256(sha256(sha256("100") + sha256("101")) + sha256(sha256("102") + sha256("103")))
+         << sha256(sha256(sha256("100") + sha256("101")) + sha256(sha256("102") + sha256("102")))
          << endl;
   }
 };
