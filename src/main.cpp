@@ -42,6 +42,9 @@ int main(int argc, char **argv)
   }
   cout << "\n\n";
 
+  m1.display_details();
+  m2.display_details();
+
   /* Displaying the blockchain */
   cout << "Do you want to display the blockchain ?? [y/n]" << endl;
   char choice;
