@@ -25,9 +25,9 @@ Blockchain::Blockchain(int difficulty, int transaction_capacity)
   this->transaction_capacity = transaction_capacity;
 }
 
-/* add transaction to the blockchain */
+/* add transaction to the blockchain returns 1 if creating new block*/
 
-void Blockchain::add_transaction(string transaction, int miner_id)
+int Blockchain::add_transaction(string transaction, int miner_id)
 {
   this->mpool.add_transaction_to_pool(transaction);
   /* create block if mpool has 4 transactions */
@@ -40,7 +40,9 @@ void Blockchain::add_transaction(string transaction, int miner_id)
       this->add_block(slice, miner_id);
     }
     this->mpool.clear();
+    return 1;
   }
+  return 0;
 }
 
 /* sets the very first block with prev hash being null hash */

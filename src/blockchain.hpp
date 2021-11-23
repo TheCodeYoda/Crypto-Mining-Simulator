@@ -20,7 +20,7 @@ class Blockchain {
   Blockchain();
   Blockchain(int difficulty);
   Blockchain(int difficulty, int transaction_capacity);
-  void add_transaction(string transaction, int miner_id);
+  int add_transaction(string transaction, int miner_id);
   bool validate_blockchain();
   void display();
   int get_transaction_capacity();
