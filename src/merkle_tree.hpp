@@ -85,9 +85,10 @@ class MerkleTree {
     }
     cout << "\n";
     cout << "merkle_root_hash: " << this->root->data << endl;
-    cout << "actual expected hash: "
-         << sha256(sha256(sha256("100") + sha256("101")) + sha256(sha256("102") + sha256("102")))
-         << endl;
+    /* cout << "actual expected hash: " */
+    /*      << sha256(sha256(sha256("100") + sha256("101")) + sha256(sha256("102") +
+     * sha256("102"))) */
+    /*      << endl; */
   }
 };
 
