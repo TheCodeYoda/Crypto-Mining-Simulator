@@ -1,8 +1,5 @@
 # Crypto-mining-simulator-
 * A Simple blockchain simulator built using c++.
-* Currently using *SHA256* *single* hashing algorithm.
-* Difficulty level is defined by the prefix number of zeroes in the hash.
-* The network keeps mining the block till it finds a block whose hash matches the difficulty level.
 * Current **Bitcoin** difficulty level is **17** !!!!! (Do not try this!)
 
 ## Usage
@@ -14,4 +11,9 @@
 ## Features
 1. Has an option to display the blocks.
 2. Displays number of tries to mine each block.
-3. First block is *genesis* block, this is not counted.
+3. Currently using *SHA256* *single* hashing algorithm.
+4. Difficulty level is defined by the prefix number of zeroes in the hash.
+5. **Proof of Work** Implemented as the Consensus Algorithm.
+6. **Merkle Trees** implemented
+7. Mining reward for a single block - **25** coins
+8. Wallets supported for miners
